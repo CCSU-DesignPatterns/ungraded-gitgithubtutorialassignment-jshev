@@ -1,5 +1,18 @@
 package edu.ccsu.cs505.hw2;
 
+/**
+ * @author Julie Shevchenko
+ * My main method.
+ * Creates new customer.
+ * Creates a Checking BankAccount with $200.
+ * Creates a Savings BankAccount with $50.
+ * Creates three CreditAccounts, each with a limit of $50.
+ * Adds accounts to customer.
+ * Customer tries to pay $150. -- Success.
+ * Customer tries to pay $220. -- Success.
+ * Customer tries to pay $5000. -- InsufficentFundsException.
+ * @param args The command line arguments.
+ **/
 public class Main {
     public static void main(String[] args) {
         Customer customer = new Customer();

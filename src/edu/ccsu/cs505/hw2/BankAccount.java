@@ -1,21 +1,39 @@
 package edu.ccsu.cs505.hw2;
 
+/**
+ * @author Julie Shevchenko
+ * BankAccount class, which extends Account.
+ * Overrides setNextChain and deduct methods 
+ **/
 public class BankAccount extends Account{
     private String accountName;
     private double accountBalance;
     private Account chainAccount;
 
+    /** 
+     * constructor for BankAccount
+     * takes name, balance, and chain and sets accountName, accountBalance, and chainAccount variables to those values
+     * @param name accountName
+     * @param balance accountBalance
+     * @param chain chainAccount
+     **/
     public BankAccount(String name, double balance, Account chain) {
         accountName = name;
         accountBalance = balance;
         chainAccount = chain;
     }
 
+    /**
+     * @see setNextChain(Account nextChain) Javadoc in Account class
+     **/
      @Override
     public void setNextChain(Account nextChain) {
         this.chainAccount = nextChain;
     }
 
+    /**
+     * @see deduct(double amount) throws InsufficientFundsException Javadoc in Account class
+     **/
     @Override
     public void deduct(double amount) throws InsufficientFundsException {
         if (amount <= accountBalance) {
@@ -28,13 +46,16 @@ public class BankAccount extends Account{
         }
     }
 
+    /**
+     * adds money to BanbkAccount's balance
+     * @param amount amount of money to be added
+     **/
     public void makeDeposit(double amount) {
         accountBalance = accountBalance + amount;
     }
 
     @Override
     public int hashCode() {
-        //return 1;
         return accountName.hashCode() + (int) accountBalance + chainAccount.hashCode();
     }
 

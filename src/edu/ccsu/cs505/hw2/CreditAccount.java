@@ -1,22 +1,39 @@
 package edu.ccsu.cs505.hw2;
 
+/**
+ * @author Julie Shevchenko
+ * CreditAccount class, which extends Account.
+ * Overrides setNextChain and deduct methods 
+ **/
 public class CreditAccount extends Account{
-
     private double creditBalance;
     private double creditLimit;
     private Account chainAccount;
 
+    /** 
+     * constructor for CreditAccount
+     * takes balance, limit, and chain and sets creditBalance, creditLimit, and chainAccount variables to those values
+     * @param name accountName
+     * @param balance accountBalance
+     * @param chain chainAccount
+     **/
     public CreditAccount(double balance, double limit, Account chain) {
         creditBalance = balance;
         creditLimit = limit;
         chainAccount = chain;
     }
 
+    /**
+     * @see setNextChain(Account nextChain) Javadoc in Account class
+     **/
     @Override
     public void setNextChain(Account nextChain) {
         this.chainAccount = nextChain;
     }
 
+    /**
+     * @see deduct(double amount) throws InsufficientFundsException Javadoc in Account class
+     **/
     @Override
     public void deduct(double amount) throws InsufficientFundsException {
         double creditLeft = creditLimit - creditBalance;
@@ -34,6 +51,11 @@ public class CreditAccount extends Account{
         }
     }
 
+    /**
+     * adds to balance on this card only (no CoR)
+     * @param amount amount to be charges to credit card
+     * @returns creditLeft, which is the limit minus the balance
+     **/
     public double charge(double amount) {
         double creditLeft = creditLimit - creditBalance;
         return creditLeft;
@@ -41,7 +63,6 @@ public class CreditAccount extends Account{
 
     @Override
     public int hashCode() {
-        //return 1;
         return (int) creditBalance + (int) creditLimit + chainAccount.hashCode();
     }
 
